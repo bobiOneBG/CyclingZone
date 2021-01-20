@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
     using CyclingZone.Data;
     using CyclingZone.Data.Common;
     using CyclingZone.Data.Common.Repositories;
@@ -13,9 +14,6 @@
     using CyclingZone.Data.Seeding;
     using CyclingZone.Services.Data;
     using CyclingZone.Services.Messaging;
-
-    using CommandLine;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
