@@ -36,4 +36,10 @@
     <ProjectReference Include="..\CyclingZone.Web.Infrastructure\CyclingZone.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\CyclingZone.Web.ViewModels\CyclingZone.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\images\cycleZone.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
