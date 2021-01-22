@@ -2,7 +2,9 @@
 {
     using System.Collections.Generic;
 
-    public class Category
+    using CyclingZone.Data.Common.Models;
+
+    public class Category : BaseModel<int>
     {
         public string Name { get; set; }
 

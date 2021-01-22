@@ -1,9 +1,8 @@
 ﻿namespace CyclingZone.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using CyclingZone.Data.Models;
     using CyclingZone.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {
