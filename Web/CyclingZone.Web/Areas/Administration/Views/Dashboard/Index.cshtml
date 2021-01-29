@@ -3,5 +3,9 @@
     this.ViewData["Title"] = "Admin dashboard";
 }
 
-<h1>@this.ViewData["Title"]</h1>
-Settings: @this.Model.SettingsCount
+@*<h1>@this.ViewData["Title"]</h1>
+Settings: @this.Model.SettingsCount*@
+
+<div>
+    <a asp-area="" asp-controller="Articles" asp-action="Create" class="btn btn-secondary btn-lg btn-block" role="button">CreateArticle</a>
+</div>

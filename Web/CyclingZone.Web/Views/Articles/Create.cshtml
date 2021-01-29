@@ -1,0 +1,97 @@
+﻿@model CyclingZone.Web.ViewModels.Site.Articles.ArticleCrateInputModel
+@{
+    var sss = Model;
+    this.ViewData["Title"] = "Admin dashboard";
+}
+<h3 class="text-center"> Create Article </h3>
+
+<form asp-action="Create" method="post" id="admin" class="mb-5">
+    <div class="form-group">
+        <label asp-for="@Model.Title">Title</label>
+        <input asp-for="@Model.Title" type="text" class="form-control" placeholder="Article title">
+        <span asp-validation-for="@Model.Title"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Author">Author</label>
+        <input asp-for="@Model.Author" type="text" class="form-control" placeholder="Author">
+        <span asp-validation-for="@Model.Author"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Subtitle">Subtitle</label>
+        <input asp-for="@Model.Subtitle" type="text" class="form-control" placeholder="Subtitle">
+        <span asp-validation-for="@Model.Subtitle"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.ImageUrl">Image</label>
+        <input asp-for="@Model.ImageUrl" type="text" class="form-control" placeholder="ImageUrl">
+        <span asp-validation-for="@Model.ImageUrl"></span>
+    </div>
+    <div class="form-group">
+        <label class="mt-4 pl-3" asp-for="@Model.Content"></label>
+        <textarea asp-for="@Model.Content" class="form-control"></textarea>
+        <span asp-validation-for="@Model.Content" class="text-danger"></span>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <label asp-for="@Model.CategoryId"></label>
+            <select asp-for="@Model.CategoryId" asp-items="@Model.SelectCategories"
+                    class="form-control" id="category_selector">
+                <option>Please select category</option>
+            </select>
+            <span asp-validation-for="@Model.SelectCategories"></span>
+        </div>
+        <div class="col">
+            <label asp-for="@Model.SubcategoryId"></label>
+            <select asp-for="@Model.SubcategoryId" asp-items="@Model.SelectSubcategories"
+                    class="form-control" id="select">
+                <option>Please select subcategory</option>
+            </select>
+            <span asp-validation-for="@Model.SelectSubcategories"></span>
+        </div>
+    </div>
+    <input type="submit" value="Create" class="btn btn-secondary btn-lg btn-block bg-dark" />
+</form>
+
+
+@section Scripts
+{
+    <script src="~/lib/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: 'textarea',  // change this value according to your HTML
+            plugins: 'image paste table link code media fullscreen wordcount searchreplace lists'
+        });
+    </script>
+
+
+    <script>
+        // Enable options from category dropdown
+        $('#category_selector').click(function () {
+            $('#category_selector option').attr('disabled', false);
+            $('#category_selector').change(function () {
+                //Use $option (with the "$") to see that the variable is a jQuery object
+                var $option = $(this).find('option:selected');
+                //Added with the EDIT
+                var value = $option.val();//to get content of "value" attrib
+
+                //var text = $option.text();//to get <option>Text</option> content
+
+                // Enable options with definitely categoryId
+                $('#select').click(function () {
+                    $('#select option').attr('disabled', false);
+                    $('#select option').each(function () {
+                        var $thisOption = $(this);
+                        var valueToCompare = value;
+                        var sss = $thisOption.val();
+                        var ctgrId = sss.charAt(0);
+
+                        if (ctgrId != valueToCompare) {
+                            $thisOption.attr('disabled', true);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+}

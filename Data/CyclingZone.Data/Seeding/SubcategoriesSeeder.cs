@@ -35,6 +35,7 @@
                             {
                                 Name = subcategoryName,
                                 CategoryId = sbcFirstDigit,
+                                Id = (int)subcategoryValue,
                             });
                     }
                 }

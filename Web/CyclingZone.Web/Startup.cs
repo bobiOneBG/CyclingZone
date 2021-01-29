@@ -9,6 +9,7 @@
     using CyclingZone.Data.Repositories;
     using CyclingZone.Data.Seeding;
     using CyclingZone.Services.Data;
+    using CyclingZone.Services.Data.Site;
     using CyclingZone.Services.Mapping;
     using CyclingZone.Services.Messaging;
     using CyclingZone.Web.ViewModels;
@@ -65,6 +66,9 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<ISubcategoriesService, SubcategoriesService>();
+            services.AddTransient<IArticlesService, ArticlesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
