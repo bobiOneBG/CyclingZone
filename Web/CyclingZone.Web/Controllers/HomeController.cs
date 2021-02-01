@@ -1,16 +1,33 @@
 ﻿namespace CyclingZone.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Linq;
 
+    using CyclingZone.Services.Data.Site;
     using CyclingZone.Web.ViewModels;
-
+    using CyclingZone.Web.ViewModels.Site.Articles;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
+        private readonly IArticlesService articlesService;
+
+        public HomeController(IArticlesService articlesService)
+        {
+            this.articlesService = articlesService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var articles = this.articlesService.GetAll<ArticleListViewModel>();
+
+            var viewModel = new ArticlesAllViewModel
+            {
+                Articles = articles,
+                LatestArticle = articles.First(),
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

@@ -1,5 +1,6 @@
 ﻿namespace CyclingZone.Services.Data.Site
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IArticlesService
@@ -12,5 +13,9 @@
             string imageUrl,
             int categoryId,
             int subcategoryId);
+
+        IEnumerable<T> GetAll<T>();
+
+        T GetLatest<T>();
     }
 }

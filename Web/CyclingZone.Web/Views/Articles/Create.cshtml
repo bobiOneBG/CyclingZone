@@ -82,8 +82,8 @@
                     $('#select option').each(function () {
                         var $thisOption = $(this);
                         var valueToCompare = value;
-                        var sss = $thisOption.val();
-                        var ctgrId = sss.charAt(0);
+                        var ctgr = $thisOption.val();
+                        var ctgrId = ctgr.charAt(0);
 
                         if (ctgrId != valueToCompare) {
                             $thisOption.attr('disabled', true);

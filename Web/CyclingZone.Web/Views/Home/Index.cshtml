@@ -1,39 +1,46 @@
-﻿@using CyclingZone.Common
+﻿@model CyclingZone.Web.ViewModels.Site.Articles.ArticlesAllViewModel
 @{
     this.ViewData["Title"] = "Home Page";
+    var articles = Model.Articles.ToList();
 }
 
-
-
-
-
-<p class="text-center">
-    This website template has been designed by 
-    <a href="http://www.freewebsitetemplates.com/">Free Website Templates</a>.
-</p>
-
-<div id="articles">
-    <ul>
-        <li>
-            <img src="images/biker.jpg" alt="Img">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisi risus, iaculis vitae imperdiet et, ultrices non elit. Aliquam est purus, tristique dictum
-            </p>
-            <a href="blog.html" class="more">Read more >></a>
-        </li>
-        <li>
-            <img src="images/biker2.jpg" alt="Img">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisi risus, iaculis vitae imperdiet et, ultrices non elit. Aliquam est purus, tristique dictum
-            </p>
-            <a href="blog.html" class="more">Read more >></a>
-        </li>
-        <li>
-            <img src="images/biker3.jpg" alt="Img">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisi risus, iaculis vitae imperdiet et, ultrices non elit. Aliquam est purus, tristique dictum
-            </p>
-            <a href="blog.html" class="more">Read more >></a>
-        </li>
-    </ul>
+<div class="card bg-dark text-white">
+    <img class="card-img responsive" src="@Model.LatestArticle.ImageUrl" alt="Card image">
+    <div class="card-img-overlay d-flex flex-column justify-content-end">
+        <div style="display:table" class="card-title text-dark bg-light">
+            <div style="background-color:red; height:9px; width:100%;">
+            </div>
+            <h2 class="mb-2 pl-3 pr-3"> @Model.LatestArticle.Title</h2>
+        </div>
+    </div>
 </div>
+
+
+@for (int i = 0; i < articles.Count; i += 2)
+{
+    <div class="card-deck mt-5 col-9 mb-5">
+
+        <div class="card">
+            <img class="card-img-top" src="@articles[i].ImageUrl" alt="Card image cap">
+            <div style="background-color:red; height:9px; width:100%;">
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">@articles[i].CategoryName</h4>
+                <h5 class="card-title">@articles[i].Title</h5>
+            </div>
+        </div>
+
+        @if ((i + 1) != articles.Count)
+        {
+            <div class="card">
+                <img class="card-img-top" src="@articles[i+1].ImageUrl" alt="Card image cap">
+                <div style="background-color:red; height:9px; width:100%;">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">@articles[i + 1].CategoryName</h4>
+                    <h5 class="card-title">@articles[i + 1].Title</h5>
+                </div>
+            </div>
+        }
+    </div>
+}
