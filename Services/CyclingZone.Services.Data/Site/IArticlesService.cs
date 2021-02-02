@@ -16,6 +16,6 @@
 
         IEnumerable<T> GetAll<T>();
 
-        T GetLatest<T>();
+        T GetById<T>(int id);
     }
 }

@@ -38,16 +38,23 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            var articles = this.articlesRepository.All().To<T>().Take(11).ToList();
+            var articles = this.articlesRepository.All()
+                .OrderByDescending(x => x.CreatedOn)
+                .To<T>()
+                .Take(11)
+                .ToList();
 
             return articles;
         }
 
-        public T GetLatest<T>()
+        public T GetById<T>(int id)
         {
-            var latestArticle = this.articlesRepository.All().To<T>().First();
+            var article = this.articlesRepository.All()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
 
-            return latestArticle;
+            return article;
         }
     }
 }

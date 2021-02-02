@@ -21,12 +21,44 @@
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                News
+                            </a>
+                            <div style="margin-right: -1000px;" class="dropdown-menu list-inline bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="list-inline-item text-light m-2" href="#">Latest</a>
+                                <a class="list-inline-item text-light m-2" href="#">Racing</a>
+                                <a class="list-inline-item text-light m-2" href="#">ProductNews</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Reviews
+                            </a>
+                            <div  style="margin-right: -1000px;" class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="list-inline-item text-light m-2" href="#">Bike Rewievs</a>
+                                <a class="list-inline-item text-light m-2" href="#">Bike Components</a>
+                                <a class="list-inline-item text-light m-2" href="#">Bike Acessories</a>
+                                <a class="list-inline-item text-light m-2" href="#">Clothing</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Fitness
+                            </a>
+                            <div style="margin-right: -1000px;" class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="list-inline-item text-light m-2" href="#">Latest Fitnes</a>
+                                <a class="list-inline-item text-light m-2" href="#">Nutrition</a>
+                                <a class="list-inline-item text-light m-2" href="#">Bike Fit</a>
+                                <a class="list-inline-item text-light m-2" href="#">Training</a>
+                            </div>
+                        </li>
+                        @*<li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        </li>*@
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -53,8 +85,11 @@
 
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>$('.dropdown').hover(function () {
+    $('.nav-link', this).trigger('click');
+        });</script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

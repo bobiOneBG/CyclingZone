@@ -25,35 +25,12 @@
             this.articlesService = articlesService;
         }
 
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Create()
+        // Get Articles/ById/5
+        public IActionResult ById(int id)
         {
-            var categories = this.categoriesService.GetAll<CategoriesDropdownViewModel>();
-            var subcategories = this.subcategoriesService.GetAll<SubcategoriesDropdownViewModel>();
-
-            var viewModel = new ArticleCrateInputModel
-            {
-                Categories = categories,
-                Subcategories = subcategories,
-            };
+            var viewModel = this.articlesService.GetById<ArticleViewModel>(id);
 
             return this.View(viewModel);
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Create(ArticleCrateInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
-
-            var articleId = await this.articlesService.CreateAsync(input.Title, input.Subtitle, input.Author,
-                input.Content, input.ImageUrl, input.CategoryId, input.SubcategoryId);
-
-            // To do -Redirect to created article
-            return this.RedirectToAction("Index", "Home", articleId);
         }
     }
 }
