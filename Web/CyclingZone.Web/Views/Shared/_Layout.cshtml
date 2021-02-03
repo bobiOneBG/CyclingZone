@@ -36,6 +36,7 @@
                                 Reviews
                             </a>
                             <div  style="margin-right: -1000px;" class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="list-inline-item text-light m-2" href="#">Latest</a>
                                 <a class="list-inline-item text-light m-2" href="#">Bike Rewievs</a>
                                 <a class="list-inline-item text-light m-2" href="#">Bike Components</a>
                                 <a class="list-inline-item text-light m-2" href="#">Bike Acessories</a>
@@ -47,8 +48,11 @@
                                 Fitness
                             </a>
                             <div style="margin-right: -1000px;" class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="list-inline-item text-light m-2" href="#">Latest Fitnes</a>
-                                <a class="list-inline-item text-light m-2" href="#">Nutrition</a>
+                                <a class="list-inline-item text-light m-2" href="#">Latest</a>
+                                <a class="list-inline-item text-light m-2" 
+                                   asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="Nutrition">Nutrition
+                                </a>
                                 <a class="list-inline-item text-light m-2" href="#">Bike Fit</a>
                                 <a class="list-inline-item text-light m-2" href="#">Training</a>
                             </div>

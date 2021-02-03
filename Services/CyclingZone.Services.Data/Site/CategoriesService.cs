@@ -23,5 +23,12 @@
             var categories = this.categoriesRepository.All().To<T>().ToList();
             return categories;
         }
+
+        public string GetCategoryName(int categoryId)
+        {
+            var categoryName = this.categoriesRepository.All().Where(x => x.Id == categoryId).FirstOrDefault().Name;
+
+            return categoryName;
+        }
     }
 }

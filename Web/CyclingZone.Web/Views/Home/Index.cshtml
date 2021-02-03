@@ -14,13 +14,13 @@
             <h2 class="mb-2 pl-3 pr-3"> @latestArticle.Title</h2>
         </div>
     </div>
+    <a class="stretched-link" asp-area="" asp-controller="Articles" asp-action="ById" asp-route-id="@latestArticle.Id"></a>
 </div>
 
 
 @for (int i = 0; i < articles.Count; i += 2)
 {
     <div class="card-deck mt-5 col-9 mb-5">
-
         <div class="card">
             <img class="card-img-top" src="@articles[i].ImageUrl" alt="Card image cap">
             <div style="background-color:red; height:9px; width:100%;">

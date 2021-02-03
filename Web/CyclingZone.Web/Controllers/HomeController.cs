@@ -24,7 +24,6 @@
             var viewModel = new ArticlesAllViewModel
             {
                 Articles = articles,
-                LatestArticle = articles.First(),
             };
 
             return this.View(viewModel);

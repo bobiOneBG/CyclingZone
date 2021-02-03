@@ -10,11 +10,18 @@
 
     public class ArticlesService : IArticlesService
     {
+        private const int ArticlesListCount = 11;
+        private const int ArticlesInSubcategoryCount = 20;
         private readonly IDeletableEntityRepository<Article> articlesRepository;
+        private readonly IRepository<Subcategory> subcategoriesRepository;
+        private readonly IRepository<Category> categoriesRepository;
 
-        public ArticlesService(IDeletableEntityRepository<Article> articlesRepository)
+        public ArticlesService(
+            IDeletableEntityRepository<Article> articlesRepository,
+            IRepository<Subcategory> subcategoriesRepository)
         {
             this.articlesRepository = articlesRepository;
+            this.subcategoriesRepository = subcategoriesRepository;
         }
 
         public async Task<int> CreateAsync(string title, string subtitle, string author, string content,
@@ -41,7 +48,18 @@
             var articles = this.articlesRepository.All()
                 .OrderByDescending(x => x.CreatedOn)
                 .To<T>()
-                .Take(11)
+                .Take(ArticlesListCount)
+                .ToList();
+
+            return articles;
+        }
+
+        public IEnumerable<T> GetAllBySubcategory<T>(string subcategoryName)
+        {
+            var articles = this.articlesRepository.All()
+                .Take(ArticlesInSubcategoryCount)
+                .Where(x => x.Subcategory.Name == subcategoryName)
+                .To<T>()
                 .ToList();
 
             return articles;
@@ -55,6 +73,15 @@
                 .FirstOrDefault();
 
             return article;
+        }
+
+        public Subcategory GetSubcategory(string subcategoryName)
+        {
+            var subcategory = this.subcategoriesRepository.All()
+                .Where(x => x.Name == subcategoryName)
+                .FirstOrDefault();
+
+            return subcategory;
         }
     }
 }

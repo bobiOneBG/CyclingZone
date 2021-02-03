@@ -9,8 +9,8 @@
     <h2 class="mb-4 pl-3 pr-3"> <b>@Model.Title</b></h2>
     <h3 class="mb-3 pl-3 pr-3"> @Model.Subtitle</h3>
     <h6 >@Model.Author</h6>
-    <h5 p-3">@Model.CreatedOn</h5>   
+    <h6 p-3">@Model.CreatedOn</h6>   
     <hr />
     <img class="image img-fluid pb-3" src="@Model.ImageUrl" />
 </div>
-<div class="col-9 bg-white mb-5">@Html.Raw( Model.SanitizedContent)</div>
+<div class="col-9 bg-white mb-5">@Html.Raw(Model.SanitizedContent)</div>

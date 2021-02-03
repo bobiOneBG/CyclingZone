@@ -30,6 +30,31 @@
         {
             var viewModel = this.articlesService.GetById<ArticleViewModel>(id);
 
+            if (viewModel == null)
+            {
+                return this.NotFound("Article not found");
+            }
+
+            return this.View(viewModel);
+        }
+
+        // TO DO Pagination
+        public IActionResult BySubcategory(string subcategoryName)
+        {
+            var articles = this.articlesService
+                .GetAllBySubcategory<ArticleSubcategoryViewModel>(subcategoryName);
+
+            var subcategory = this.articlesService.GetSubcategory(subcategoryName);
+
+            var categoryName = this.categoriesService.GetCategoryName(subcategory.CategoryId);
+
+            var viewModel = new ArticlesAllSubcategoryViewModel
+            {
+                CategoryName = categoryName,
+                Subcategory = subcategory,
+                Articles = articles,
+            };
+
             return this.View(viewModel);
         }
     }

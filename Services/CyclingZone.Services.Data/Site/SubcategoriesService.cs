@@ -12,10 +12,14 @@
     public class SubcategoriesService : ISubcategoriesService
     {
         private readonly IRepository<Subcategory> subcategoriesRepository;
+        private readonly IRepository<Category> categoriesRepository;
 
-        public SubcategoriesService(IRepository<Subcategory> subcategoriesRepository)
+        public SubcategoriesService(
+            IRepository<Subcategory> subcategoriesRepository,
+            IRepository<Category> categoriesRepository)
         {
             this.subcategoriesRepository = subcategoriesRepository;
+            this.categoriesRepository = categoriesRepository;
         }
 
         public IEnumerable<T> GetAll<T>()
