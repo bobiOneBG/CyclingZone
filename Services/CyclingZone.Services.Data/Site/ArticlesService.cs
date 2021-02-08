@@ -11,7 +11,7 @@
     public class ArticlesService : IArticlesService
     {
         private const int ArticlesListCount = 11;
-        private const int ArticlesInSubcategoryCount = 20;
+        private const int ArticlesViewCount = 20;
         private readonly IDeletableEntityRepository<Article> articlesRepository;
         private readonly IRepository<Subcategory> subcategoriesRepository;
         private readonly IRepository<Category> categoriesRepository;
@@ -57,10 +57,23 @@
         public IEnumerable<T> GetAllBySubcategory<T>(string subcategoryName)
         {
             var articles = this.articlesRepository.All()
-                .Take(ArticlesInSubcategoryCount)
+                .OrderByDescending(x => x.CreatedOn)
+                .Take(ArticlesViewCount)
                 .Where(x => x.Subcategory.Name == subcategoryName)
                 .To<T>()
                 .ToList();
+
+            return articles;
+        }
+
+        public IEnumerable<T> GetAllByCategory<T>(string categoryName)
+        {
+            var articles = this.articlesRepository.All()
+                  .OrderByDescending(x => x.CreatedOn)
+                  .Take(ArticlesViewCount)
+                  .Where(x => x.Category.Name == categoryName)
+                  .To<T>()
+                  .ToList();
 
             return articles;
         }
@@ -73,15 +86,6 @@
                 .FirstOrDefault();
 
             return article;
-        }
-
-        public Subcategory GetSubcategory(string subcategoryName)
-        {
-            var subcategory = this.subcategoriesRepository.All()
-                .Where(x => x.Name == subcategoryName)
-                .FirstOrDefault();
-
-            return subcategory;
         }
     }
 }

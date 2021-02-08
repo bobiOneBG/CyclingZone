@@ -27,5 +27,14 @@
             var subcategories = this.subcategoriesRepository.All().To<T>().ToList();
             return subcategories;
         }
+
+        public Subcategory GetSubcategory(string subcategoryName)
+        {
+            var subcategory = this.subcategoriesRepository.All()
+                .Where(x => x.Name == subcategoryName)
+                .FirstOrDefault();
+
+            return subcategory;
+        }
     }
 }

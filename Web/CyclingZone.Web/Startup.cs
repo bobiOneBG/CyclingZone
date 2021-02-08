@@ -107,7 +107,8 @@
             app.UseEndpoints(
                 endpoints =>
                     {
-                        endpoints.MapControllerRoute("subcategory", "{controller=Articles}/{action=BySubcategory}/{subcategoryName:alpha}");
+                        //endpoints.MapControllerRoute("subcategory", "{controller=Articles}/{action=BySubcategory}/{subcategoryName:alpha}");
+                        endpoints.MapControllerRoute("category", "{controller=Articles}/{action=ByCategory}/{categoryName:alpha}");
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();

@@ -39,12 +39,13 @@
         }
 
         // TO DO Pagination
+        // Get Articles/ BySubcategory/ Fitness
         public IActionResult BySubcategory(string subcategoryName)
         {
             var articles = this.articlesService
                 .GetAllBySubcategory<ArticleSubcategoryViewModel>(subcategoryName);
 
-            var subcategory = this.articlesService.GetSubcategory(subcategoryName);
+            var subcategory = this.subcategoriesService.GetSubcategory(subcategoryName);
 
             var categoryName = this.categoriesService.GetCategoryName(subcategory.CategoryId);
 
@@ -52,6 +53,20 @@
             {
                 CategoryName = categoryName,
                 Subcategory = subcategory,
+                Articles = articles,
+            };
+
+            return this.View(viewModel);
+        }
+
+        // Get Articles/ ByCategory/ News
+        public IActionResult ByCategory(string categoryName)
+        {
+            var articles = this.articlesService
+                .GetAllByCategory<ArticleCategoryViewModel>(categoryName);
+
+            var viewModel = new ArticlesAllCategoryViewModel
+            {
                 Articles = articles,
             };
 

@@ -22,6 +22,6 @@
 
         IEnumerable<T> GetAllBySubcategory<T>(string subcategoryName);
 
-        Subcategory GetSubcategory(string subcategoryName);
+        IEnumerable<T> GetAllByCategory<T>(string categoryName);
     }
 }

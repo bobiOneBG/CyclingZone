@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.min.css" />
 </head>
+
+@*TO DO Dropdown button link to subcategoryAll   *@
 <body class="bg-secondary">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark box-shadow mb-3">
             <div class="container-fluid">
                 <div id="logo">
-                    <a asp-area="" asp-controller="Home" asp-action="Index"> <img src="images/cycleZone.gif" alt="LOGO"> </a>
+                    <a asp-area="" asp-controller="Home" asp-action="Index"> <img src="~/images/cycleZone.gif" alt="LOGO"> </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -22,47 +24,90 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-light" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <a class="nav-link text-light" asp-area="" asp-controller="Articles"
+                               asp-action="ByCategory" asp-route-categoryName="News" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 News
                             </a>
+
                             <div style="margin-right: -1000px;" class="dropdown-menu list-inline bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="list-inline-item text-light m-2" href="#">Latest</a>
-                                <a class="list-inline-item text-light m-2" href="#">Racing</a>
-                                <a class="list-inline-item text-light m-2" href="#">ProductNews</a>
+                                <a class="list-inline-item text-light m-2" asp-area=""
+                                   asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="Latest">
+                                    Latest
+                                </a>
+                                <a class="list-inline-item text-light m-2" asp-area=""
+                                   asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="Racing">
+                                    Racing
+                                </a>
+                                <a class="list-inline-item text-light m-2" asp-area=""
+                                   asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="ProductNews">
+                                    Product News
+                                </a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-light" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Articles"
+                               asp-action="ByCategory" asp-route-categoryName="Reviews" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Reviews
                             </a>
-                            <div  style="margin-right: -1000px;" class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="list-inline-item text-light m-2" href="#">Latest</a>
-                                <a class="list-inline-item text-light m-2" href="#">Bike Rewievs</a>
-                                <a class="list-inline-item text-light m-2" href="#">Bike Components</a>
-                                <a class="list-inline-item text-light m-2" href="#">Bike Acessories</a>
-                                <a class="list-inline-item text-light m-2" href="#">Clothing</a>
+                            <div style="margin-right: -1000px;" class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="list-inline-item text-light m-2" asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="Latest">
+                                    Latest
+                                </a>
+                                <a class="list-inline-item text-light m-2" asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="BikeRewievs">
+                                    Bike Rewievs
+                                </a>
+                                <a class="list-inline-item text-light m-2" asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="BikeComponents">
+                                    Bike Components
+                                </a>
+                                <a class="list-inline-item text-light m-2" asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="BikeAcessories">
+                                    Bike Acessories
+                                </a>
+                                <a class="list-inline-item text-light m-2" asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="Clothing">
+                                    Clothing
+                                </a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-light" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Articles"
+                               asp-action="ByCategory" asp-route-categoryName="Fitness" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Fitness
                             </a>
                             <div style="margin-right: -1000px;" class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="list-inline-item text-light m-2" href="#">Latest</a>
-                                <a class="list-inline-item text-light m-2" 
-                                   asp-area="" asp-controller="Articles" asp-action="BySubcategory"
-                                   asp-route-subcategoryName="Nutrition">Nutrition
+                                <a class="list-inline-item text-light m-2" asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="Latest">
+                                    Latest
                                 </a>
-                                <a class="list-inline-item text-light m-2" href="#">Bike Fit</a>
-                                <a class="list-inline-item text-light m-2" href="#">Training</a>
+                                <a class="list-inline-item text-light m-2"
+                                   asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="Nutrition">
+                                    Nutrition
+                                </a>
+                                <a class="list-inline-item text-light m-2" asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="BikeFit">
+                                    Bike Fit
+                                </a>
+                                <a class="list-inline-item text-light m-2" asp-area="" asp-controller="Articles" asp-action="BySubcategory"
+                                   asp-route-subcategoryName="Training">
+                                    Training
+                                </a>
                             </div>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
+                                <a class="nav-link text-light" asp-area="" asp-controller="Articles"
+                                   asp-action="ByCategory" asp-route-categoryName="News">News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>*@
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -71,9 +116,12 @@
     </header>
 
     <div class="container-fluid">
-        <div class="text-center bg-dark">
-            <h3 class="text-light pb-3 pt-3">All about road cycling</h3>
-        </div>
+        @if ((string)this.ViewData["Title"] == "Home Page")
+        {
+            <div class="text-center bg-dark mb-3">
+                <h3 class="text-light pb-3 pt-3">All about road cycling</h3>
+            </div>
+        }
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -91,9 +139,40 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script>$('.dropdown').hover(function () {
-    $('.nav-link', this).trigger('click');
-        });</script>
+    <script>
+        $('.dropdown').hover(function () {
+            $('.nav-link', this).trigger('click');
+        });
+    </script>
+    <script>
+        var timeout = 250;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        function jsddm_open() {
+            jsddm_canceltimer();
+            jsddm_close();
+            ddmenuitem = $(this).find('ul').css('visibility', 'visible');
+        }
+
+        function jsddm_close() { if (ddmenuitem) ddmenuitem.css('visibility', 'hidden'); }
+
+        function jsddm_timer() { closetimer = window.setTimeout(jsddm_close, timeout); }
+
+        function jsddm_canceltimer() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        $(document).ready(function () {
+            $('#jsddm > li').bind('mouseover', jsddm_open)
+            $('#jsddm > li').bind('mouseout', jsddm_timer)
+        });
+
+        document.onclick = jsddm_close
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
