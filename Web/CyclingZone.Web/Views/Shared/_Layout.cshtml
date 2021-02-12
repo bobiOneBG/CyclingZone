@@ -101,13 +101,14 @@
                                 </a>
                             </div>
                         </li>
-                        @*<li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Articles"
-                                   asp-action="ByCategory" asp-route-categoryName="News">News</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>*@
+                        @*
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </li>*@
+                        <li class="nav-item px-5">
+                            <a class="nav-link text-light" asp-area="" asp-controller="ForumHome"
+                               asp-action="Index">Forum</a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

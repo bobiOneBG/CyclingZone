@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.min.css" />
+</head>
+<body style="background-color: #e6e6ff">
+    <nav class="navbar navbar-dark navbar-expand-lg" style=" background-color: #1a8cff;">
+
+        <div class="container-fluid px-5">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li>
+                    <a class="navbar-brand" href="#">Forum Zone</a>
+                </li>
+                <li>
+                    <a class="nav-link active" aria-current="page" href="#">Cycling Zone</a>
+                </li>
+                <li>
+                    <a class="nav-link active" href="#">Categories</a>
+                </li>
+                <li>
+                    <a class="nav-link active" href="#">Discussions</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="justify-content-end px-5">
+            <a class="text-light text-decoration-underline active" href="#">SignIn</a>
+        </div>
+    </nav>
+    <div class="container-fluid mb-5">
+        <div class="row mt-4">
+            <div class="col-1"></div>
+            <div class="col-7 float-start">
+                <div class="h-50 pt-4 h4 ps-5" style="background-color: #d0e1e1">Forum home</div>
+                <div class="h-50 ps-4 pe-3 pt-4  mt-4" style="background-color: #d0e1e1">
+                    <input type="search" id="form1" class="form-control" placeholder="Search"
+                           aria-label="Search" />
+                </div>
+            </div>
+            
+            <div class="col-3 m-3">
+                <span class="h3 mb-2">Welcome to the forum.<br /></span>
+                <span class="h5 mb-3">Log in or register to join the conversation.<br></span>
+                <button type="button" class="btn btn-outline-primary mt-3">Sign in</button>
+                <button type="button" class="btn btn-outline-primary mt-3 ms-2">Register</button>
+            </div>            
+        </div>
+    </div>
+
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+</body>
+</html>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
