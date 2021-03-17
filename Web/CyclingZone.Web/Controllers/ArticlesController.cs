@@ -39,6 +39,8 @@
         }
 
         // TO DO Pagination
+        // Show all articles by subcategory name
+        // Dropdown menu for subcategories
         // Get Articles/ BySubcategory/ Fitness
         public IActionResult BySubcategory(string subcategoryName)
         {

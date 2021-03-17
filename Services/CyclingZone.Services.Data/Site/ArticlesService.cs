@@ -1,5 +1,6 @@
 ﻿namespace CyclingZone.Services.Data.Site
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -35,7 +36,9 @@
                 Content = content,
                 ImageUrl = imageUrl,
                 CategoryId = categoryId,
-                SubcategoryId = subcategoryId,
+
+                // Joined CategoryId and SubcategoryId In ArticleCreateInputModel
+                SubcategoryId = this.RemoveFirstDigit(subcategoryId),
             };
 
             await this.articlesRepository.AddAsync(article);
@@ -86,6 +89,11 @@
                 .FirstOrDefault();
 
             return article;
+        }
+
+        private int RemoveFirstDigit(int subcategoryId)
+        {
+            return int.Parse(subcategoryId.ToString().Substring(1));
         }
     }
 }

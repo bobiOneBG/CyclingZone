@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CyclingZone.Data.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@if (SignInManager.IsSignedIn(this.User))
+{
+<span class="h4">Hello, @User.Identity.Name!<br /></span>
+    <span class="h5">Press to leave forum</span>
+    <form class="form-inline"
+          asp-area="Identity"
+          asp-page="/Account/Logout"
+          asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button type="submit" class="btn btn-outline-primary mt-3 ms-2">Logout</button>
+    </form>
+}
+else
+{
+    <span class="h3 mb-2">Welcome to the forum.<br /></span>
+    <span class="h5 mb-3">Log in or register to join the conversation.<br></span>
+    <div class="d-inline-flex">
+        <form
+              asp-area="Identity"
+              asp-page="/Account/Login"
+              asp-route-returnUrl="@Url.Action("Index")">
+            <button type="submit" class="btn btn-outline-primary mt-3">Sign in</button>
+        </form>
+        @*TO DO Redirect to forumhome not working *@
+        <form asp-area="Identity"
+              asp-page="/Account/Register"
+              asp-route-returnUrl="@Url.Action("Index")">
+            <button type="submit" class="btn btn-outline-primary mt-3 ms-3">Register</button>
+        </form>
+    </div>   
+}

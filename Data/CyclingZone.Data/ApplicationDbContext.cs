@@ -8,6 +8,7 @@
 
     using CyclingZone.Data.Common.Models;
     using CyclingZone.Data.Models;
+    using CyclingZone.Data.Models.Forum;
     using CyclingZone.Data.Models.Site;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
@@ -26,11 +27,15 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        // Site Seed
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Subcategory> Subcategories { get; set; }
+
+        // Forum Seed
+        public DbSet<ForumCategory> ForumCategories { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

@@ -9,5 +9,7 @@
         public string Name { get; set; }
 
         public ICollection<Subcategory> Subcategories { get; set; }
+
+        public string Description { get; set; }
     }
 }

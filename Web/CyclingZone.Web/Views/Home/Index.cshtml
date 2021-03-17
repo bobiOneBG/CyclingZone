@@ -1,26 +1,74 @@
-﻿@model CyclingZone.Web.ViewModels.Site.Articles.ArticlesAllViewModel
+﻿@using CyclingZone.Web.ViewModels.Site.Articles
+@model CyclingZone.Web.ViewModels.Site.Articles.ArticlesAllViewModel
 @{
     this.ViewData["Title"] = "Home Page";
+
     var articles = Model.Articles.ToList();
-    var latestArticle = articles[0];
+
+    ArticleListViewModel latestArticle = articles.Count > 0 ?
+        articles[0] :
+        null;
 }
 
-<div class="card bg-dark text-white">
-    <img class="card-img responsive" src="@latestArticle.ImageUrl" alt="Card image">
-    <div class="card-img-overlay d-flex flex-column justify-content-end">
-        <div style="display:table" class="card-title text-dark bg-light">
-            <div style="background-color:red; height:9px; width:100%;">
-            </div>
-            <h2 class="mb-2 pl-3 pr-3"> @latestArticle.Title</h2>
-        </div>
-    </div>
-    <a class="stretched-link" asp-area="" asp-controller="Articles" asp-action="ById" asp-route-id="@latestArticle.Id"></a>
-</div>
-
-
-@for (int i = 0; i < articles.Count; i += 2)
+@if (latestArticle is not null)
 {
-    <div class="card-deck mt-5 col-9 mb-5">
+    <div class="card bg-dark text-white">
+        <img class="card-img responsive" src="@latestArticle.ImageUrl" alt="Card image">
+        <div class="card-img-overlay d-flex flex-column justify-content-end">
+            <div style="display:table" class="card-title text-dark bg-light">
+                <div style="background-color:red; height:9px; width:100%;"></div>
+                <h2 class="mb-2 pl-3 pr-3"> @latestArticle.Title</h2>
+            </div>
+        </div>
+        <a class="stretched-link" asp-area="" asp-controller="Articles" asp-action="ById" asp-route-id="@latestArticle.Id"></a>
+    </div>
+}
+else
+{
+    <div>Not Articles yet</div>
+}
+
+
+@if (articles.Count > 0)
+
+{
+    @for (int i = 0; i < articles.Count; i += 2)
+    {
+        <div class=" pt-3 pe-3" style="width: 62rem;display: flex; ">
+            <div class="card p-5">
+                <div>
+                    <img src="@articles[i].ImageUrl" class="card-img-top" alt="...">
+                </div>
+                <div style="background-color:red; height:9px; width:100%;"></div>
+                <div>
+                    <h3>@articles[i].SubcategoryName</h3>
+                    <h5 class="card-title">@articles[i].Title</h5>
+                </div>
+            </div>
+            @if ((i + 1) != articles.Count)
+            {
+                <div class="card p-5 ms-3">
+                    <div>
+                        <img src="@articles[i+1].ImageUrl" class="card-img-top" alt="...">
+                    </div>
+                    <div style="background-color:red; height:9px; width:100%;"></div>
+                    <div>
+                        <h3>@articles[i+1].SubcategoryName</h3>
+                        <h5 class="card-title">@articles[i + 1].Title</h5>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+
+
+
+
+
+
+
+@*<div class="card-deck mt-5 col-9 mb-5">
         <div class="card">
             <img class="card-img-top" src="@articles[i].ImageUrl" alt="Card image cap">
             <div style="background-color:red; height:9px; width:100%;">
@@ -28,7 +76,7 @@
             <div class="card-body">
                 <h4 class="card-title">@articles[i].CategoryName</h4>
                 <h5 class="card-title">@articles[i].Title</h5>
-               
+
                 <a class="stretched-link" asp-area="" asp-controller="Articles" asp-action="ById" asp-route-id="@articles[i].Id"></a>
             </div>
         </div>
@@ -48,4 +96,4 @@
             </div>
         }
     </div>
-}
+*@

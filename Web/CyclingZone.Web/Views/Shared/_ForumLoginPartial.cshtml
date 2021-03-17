@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CyclingZone.Data.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-light">Logged as @this.User.Identity.Name</div>
+}
+
+else
+{
+    <a class="text-light text-decoration-underline active"
+       asp-area="Identity" asp-page="/Account/Login"
+       asp-route-returnUrl="@Url.Action("Index", "ForumHome", new { area = "" })">
+        SignIn
+    </a>
+}
+

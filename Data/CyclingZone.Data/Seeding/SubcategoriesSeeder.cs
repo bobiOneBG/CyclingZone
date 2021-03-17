@@ -34,8 +34,7 @@
                             new Subcategory
                             {
                                 Name = subcategoryName,
-                                CategoryId = sbcFirstDigit,
-                                Id = (int)subcategoryValue,
+                                CategoryId = (int)categoryValue,
                             });
                     }
                 }

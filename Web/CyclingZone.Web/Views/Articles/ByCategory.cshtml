@@ -3,3 +3,19 @@
 <div>
     Category All Articles
 </div>
+<div class="col-md-8">
+    @foreach (var article in Model.Articles)
+    {
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <img src="@article.ImageUrl" class="card-img" alt="...">
+                </div>
+                <div class="card-body col-md-2 mt-lg-5">
+                        <h5 class="card-title">@article.Title</h5>
+                        <p class="card-text">@article.Subtitle</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

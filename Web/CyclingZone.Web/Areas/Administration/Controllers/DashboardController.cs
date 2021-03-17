@@ -64,7 +64,7 @@
                 input.Content, input.ImageUrl, input.CategoryId, input.SubcategoryId);
 
             // To do -Redirect to created article
-            return this.RedirectToAction("Index", "Home", articleId);
+            return this.Redirect(string.Join("/", "https://localhost:44319/Articles/ById", articleId));
         }
     }
 }

@@ -74,51 +74,20 @@ body {
     line-height: 60px; /* Vertically center the text there */
 }
 
-
-#jsddm {
-    margin: 0;
-    padding: 0
-}
-
-    #jsddm li {
-        float: left;
-        list-style: none;
-        font: 12px Tahoma, Arial
+@media all and (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: none;
     }
 
-        #jsddm li a {
-            display: block;
-            background: #20548E;
-            padding: 5px 12px;
-            text-decoration: none;
-            border-right: 1px solid white;
-            width: 70px;
-            color: #EAFFED;
-            white-space: nowrap
-        }
+    .navbar .nav-item:hover .nav-link {
+        color: #fff;
+    }
 
-            #jsddm li a:hover {
-                background: #1A4473
-            }
+    .navbar .nav-item:hover .dropdown-menu {
+        display: block;
+    }
 
-        #jsddm li ul {
-            margin: 0;
-            padding: 0;
-            position: absolute;
-            visibility: hidden;
-            border-top: 1px solid white
-        }
-
-            #jsddm li ul li {
-                float: none;
-                display: inline
-            }
-
-                #jsddm li ul li a {
-                    width: auto;
-                    background: #9F1B1B
-                }
-
-                    #jsddm li ul li a:hover {
-                        background: #7F1616
-                    }
+    .navbar .nav-item .dropdown-menu {
+        margin-top: 0;
+    }
+}	

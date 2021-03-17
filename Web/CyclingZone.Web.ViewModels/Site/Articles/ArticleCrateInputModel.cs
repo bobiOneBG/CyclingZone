@@ -43,6 +43,6 @@
         public IEnumerable<SubcategoriesDropdownViewModel> Subcategories { get; set; }
 
         public IEnumerable<SelectListItem> SelectSubcategories =>
-            this.Subcategories?.Select(x => new SelectListItem { Text = x.Name, Value = x.Id, Disabled = true });
+            this.Subcategories?.Select(x => new SelectListItem { Text = x.Name, Value = x.JoinedIds, Disabled = true });
     }
 }

@@ -12,5 +12,7 @@
         public string ImageUrl { get; set; }
 
         public string CategoryName { get; set; }
+
+        public string SubcategoryName { get; set; }
     }
 }

@@ -1,9 +1,8 @@
 ﻿@model CyclingZone.Web.ViewModels.Site.Articles.ArticleCrateInputModel
 @{
-    var sss = Model;
     this.ViewData["Title"] = "Admin dashboard";
 }
-<h3 class="text-center"> Create Article </h3>
+<div class="container-fluid"> Create Article </div>
 
 <form asp-action="Create" method="post" id="admin" class="mb-5">
     <div class="form-group">
@@ -43,8 +42,8 @@
         <div class="col">
             <label asp-for="@Model.SubcategoryId"></label>
             <select asp-for="@Model.SubcategoryId" asp-items="@Model.SelectSubcategories"
-                    class="form-control" id="select">
-                <option>Please select subcategory</option>
+                    class="form-control" id="select" >
+                <option>Please select subcategory</option>                
             </select>
             <span asp-validation-for="@Model.SelectSubcategories"></span>
         </div>
@@ -84,12 +83,12 @@
                         var valueToCompare = value;
                         var ctgr = $thisOption.val();
                         var ctgrId = ctgr.charAt(0);
-
                         if (ctgrId != valueToCompare) {
                             $thisOption.attr('disabled', true);
                         }
                     });
                 });
+                
             });
         });
     </script>

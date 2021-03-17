@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CyclingZone.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210122082556_AddBaseModels")]
-    partial class AddBaseModels
+    [Migration("20210223083431_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -141,6 +141,103 @@ namespace CyclingZone.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("CyclingZone.Data.Models.Forum.Discussion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ForumCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ForumCategoryId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("Discussion");
+                });
+
+            modelBuilder.Entity("CyclingZone.Data.Models.Forum.ForumCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ForumCategories");
+                });
+
+            modelBuilder.Entity("CyclingZone.Data.Models.Forum.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DiscussionId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("DiscussionId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("Post");
+                });
+
             modelBuilder.Entity("CyclingZone.Data.Models.Setting", b =>
                 {
                     b.Property<int>("Id")
@@ -252,11 +349,14 @@ namespace CyclingZone.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -375,6 +475,30 @@ namespace CyclingZone.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("CyclingZone.Data.Models.Forum.Discussion", b =>
+                {
+                    b.HasOne("CyclingZone.Data.Models.Forum.ForumCategory", "ForumCategory")
+                        .WithMany("Discussions")
+                        .HasForeignKey("ForumCategoryId");
+
+                    b.Navigation("ForumCategory");
+                });
+
+            modelBuilder.Entity("CyclingZone.Data.Models.Forum.Post", b =>
+                {
+                    b.HasOne("CyclingZone.Data.Models.ApplicationUser", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("CyclingZone.Data.Models.Forum.Discussion", "Discussion")
+                        .WithMany("Posts")
+                        .HasForeignKey("DiscussionId");
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Discussion");
+                });
+
             modelBuilder.Entity("CyclingZone.Data.Models.Site.Article", b =>
                 {
                     b.HasOne("CyclingZone.Data.Models.Site.Category", "Category")
@@ -398,7 +522,9 @@ namespace CyclingZone.Data.Migrations
                 {
                     b.HasOne("CyclingZone.Data.Models.Site.Category", null)
                         .WithMany("Subcategories")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -459,6 +585,16 @@ namespace CyclingZone.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("CyclingZone.Data.Models.Forum.Discussion", b =>
+                {
+                    b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("CyclingZone.Data.Models.Forum.ForumCategory", b =>
+                {
+                    b.Navigation("Discussions");
                 });
 
             modelBuilder.Entity("CyclingZone.Data.Models.Site.Category", b =>

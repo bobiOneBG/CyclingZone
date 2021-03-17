@@ -5,6 +5,7 @@
         Latest = 10,
         Racing = 11,
         ProductNews = 12,
+        GeneralNews = 13,
 
         BikeRewievs = 21,
         BikeComponents = 22,
